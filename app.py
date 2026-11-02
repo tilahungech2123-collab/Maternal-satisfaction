@@ -85,12 +85,6 @@ with tab_overview:
     - **Quality & Facility Perceptions:** Privacy at delivery, Waiting time at hospital, Distance to Clinic.
     """)
 
-    st.subheader("📋 Dataset Preview")
-    st.info(
-        "Individual survey records are not included in this public deployment. "
-        "Privacy-filtered aggregate counts are available in the Descriptive Charts tab."
-    )
-
 # --- TAB 2: DESCRIPTIVE CHARTS ---
 with tab_descriptive:
     st.header("Descriptive Charts & Insights")
