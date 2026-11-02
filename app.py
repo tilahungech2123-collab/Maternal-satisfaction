@@ -25,10 +25,11 @@ except FileNotFoundError as e:
     st.stop()
 
 # --- Try Loading Raw Data for Preview and Plots ---
-try:
+raw_data_path = project_dir / "Delivery care satisfaction.sav"
+if raw_data_path.exists():
     # Reading the primary dataset to show raw preview in Overview tab
-    df_raw = pd.read_spss(project_dir / "Delivery care satisfaction.sav")
-except FileNotFoundError:
+    df_raw = pd.read_spss(raw_data_path)
+else:
     df_raw = None
 
 # --- Display Top Cover Image of a Pregnant Mother from Google Drive ---
