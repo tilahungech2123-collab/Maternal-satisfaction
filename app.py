@@ -24,13 +24,10 @@ except FileNotFoundError as e:
     st.error(f"Error: Missing model or preprocessing files: {e}")
     st.stop()
 
-# --- Try Loading Raw Data for Preview and Plots ---
-raw_data_path = project_dir / "Delivery care satisfaction.sav"
-if raw_data_path.exists():
-    # Reading the primary dataset to show raw preview in Overview tab
-    df_raw = pd.read_spss(raw_data_path)
-else:
-    df_raw = None
+try:
+    df_summary = pd.read_csv(project_dir / "descriptive_summary.csv")
+except FileNotFoundError:
+    df_summary = None
 
 # --- Display Top Cover Image of a Pregnant Mother from Google Drive ---
 col_spacer1, col_img_center, col_spacer2 = st.columns([1, 2, 1])
@@ -88,13 +85,11 @@ with tab_overview:
     - **Quality & Facility Perceptions:** Privacy at delivery, Waiting time at hospital, Distance to Clinic.
     """)
 
-    # Raw Data Preview section
-    st.subheader("📋 Raw Dataset Preview")
-    if df_raw is not None:
-        df_preview = df_raw.head(20).astype(str)
-        st.dataframe(df_preview)
-    else:
-        st.info("Raw dataset preview currently unavailable in this deployment environment.")
+    st.subheader("📋 Dataset Preview")
+    st.info(
+        "Individual survey records are not included in this public deployment. "
+        "Privacy-filtered aggregate counts are available in the Descriptive Charts tab."
+    )
 
 # --- TAB 2: DESCRIPTIVE CHARTS ---
 with tab_descriptive:
@@ -104,36 +99,67 @@ with tab_descriptive:
     These plots reveal how key demographic, obstetric, and institutional factors correlate with maternal satisfaction.
     """)
 
-    if df_raw is not None:
+    if df_summary is not None:
         st.subheader("Custom Categorical Variable Explorer")
-        all_categorical_cols = df_raw.select_dtypes(include='category').columns.tolist()
-        all_categorical_cols.sort()
+        all_categorical_cols = sorted(
+            df_summary.loc[
+                df_summary["variable"] != "satisfaction", "variable"
+            ].unique().tolist()
+        )
 
         selected_var = st.selectbox("Choose a categorical variable to visualize:", all_categorical_cols, index=all_categorical_cols.index('modeofdeliveryrecode') if 'modeofdeliveryrecode' in all_categorical_cols else 0)
+        variable_summary = df_summary[df_summary["variable"] == selected_var]
 
         col_exp_left, col_exp_right = st.columns([2, 1])
         with col_exp_left:
             fig_custom, ax_custom = plt.subplots(figsize=(8, 4.5))
-            sns.countplot(data=df_raw, x=selected_var, hue='satisfaction', palette='viridis', ax=ax_custom)
+            sns.barplot(
+                data=variable_summary,
+                x="category",
+                y="count",
+                hue="satisfaction",
+                palette="viridis",
+                ax=ax_custom,
+            )
             ax_custom.set_title(f"Distribution of {selected_var} by Satisfaction")
             ax_custom.set_xlabel(selected_var)
             ax_custom.set_ylabel("Count")
-            plt.xticks(rotation=45, ha='right')
+            ax_custom.tick_params(axis="x", labelrotation=45)
+            for label in ax_custom.get_xticklabels():
+                label.set_horizontalalignment("right")
             st.pyplot(fig_custom)
 
         with col_exp_right:
             st.markdown(f"**Frequency Breakdown for `{selected_var}`**")
-            freq_df = df_raw[selected_var].value_counts().reset_index()
-            freq_df.columns = [selected_var, 'Count']
+            freq_df = (
+                variable_summary.groupby("category", as_index=False)["count"]
+                .sum()
+                .rename(columns={"category": selected_var, "count": "Count"})
+            )
             st.dataframe(freq_df, use_container_width=True)
 
+        st.caption(
+            "Categories with fewer than 5 observations in either satisfaction "
+            "group are omitted to protect privacy."
+        )
         st.markdown("---")
         col_left, col_right = st.columns(2)
 
         with col_left:
             st.subheader("Overall Distribution of Maternal Satisfaction")
             fig1, ax1 = plt.subplots(figsize=(6, 4.5))
-            sns.countplot(data=df_raw, x='satisfaction', palette='viridis', hue='satisfaction', legend=False, ax=ax1)
+            satisfaction_summary = df_summary[
+                df_summary["variable"] == "satisfaction"
+            ]
+            sns.barplot(
+                data=satisfaction_summary,
+                x="category",
+                y="count",
+                hue="category",
+                palette="viridis",
+                legend=False,
+                ax=ax1,
+            )
             ax1.set_title("Distribution of Maternal Satisfaction")
             ax1.set_xlabel("Satisfaction Level")
             ax1.set_ylabel("Count")
@@ -142,8 +168,18 @@ with tab_descriptive:
         with col_right:
             st.subheader("Satisfaction by Mode of Delivery")
             fig2, ax2 = plt.subplots(figsize=(6, 4.5))
-            if 'modeofdeliveryrecode' in df_raw.columns:
-                sns.countplot(data=df_raw, x='modeofdeliveryrecode', hue='satisfaction', palette='Set2', ax=ax2)
+            if "modeofdeliveryrecode" in all_categorical_cols:
+                delivery_summary = df_summary[
+                    df_summary["variable"] == "modeofdeliveryrecode"
+                ]
+                sns.barplot(
+                    data=delivery_summary,
+                    x="category",
+                    y="count",
+                    hue="satisfaction",
+                    palette="Set2",
+                    ax=ax2,
+                )
                 ax2.set_title("Satisfaction by Mode of Delivery")
                 ax2.set_xlabel("Mode of Delivery")
                 ax2.set_ylabel("Count")
@@ -157,28 +193,58 @@ with tab_descriptive:
         with col_f1:
             st.markdown("**1. Cleanliness of Toilets / Wards**")
             fig3, ax3 = plt.subplots(figsize=(5, 4))
-            if 'accessandcleanessoftoiletrecode' in df_raw.columns:
-                sns.countplot(data=df_raw, x='accessandcleanessoftoiletrecode', hue='satisfaction', palette='coolwarm', ax=fig3.gca())
-                ax3.set_xticklabels(ax3.get_xticklabels(), rotation=30, ha='right')
+            if "accessandcleanessoftoiletrecode" in all_categorical_cols:
+                cleanliness_summary = df_summary[
+                    df_summary["variable"] == "accessandcleanessoftoiletrecode"
+                ]
+                sns.barplot(
+                    data=cleanliness_summary,
+                    x="category",
+                    y="count",
+                    hue="satisfaction",
+                    palette="coolwarm",
+                    ax=ax3,
+                )
+                ax3.tick_params(axis="x", labelrotation=30)
             st.pyplot(fig3)
 
         with col_f2:
             st.markdown("**2. Privacy During Delivery**")
             fig4, ax4 = plt.subplots(figsize=(5, 4))
-            if 'privacyrecode' in df_raw.columns:
-                sns.countplot(data=df_raw, x='privacyrecode', hue='satisfaction', palette='coolwarm', ax=fig4.gca())
-                ax4.set_xticklabels(ax4.get_xticklabels(), rotation=30, ha='right')
+            if "privacyrecode" in all_categorical_cols:
+                privacy_summary = df_summary[
+                    df_summary["variable"] == "privacyrecode"
+                ]
+                sns.barplot(
+                    data=privacy_summary,
+                    x="category",
+                    y="count",
+                    hue="satisfaction",
+                    palette="coolwarm",
+                    ax=ax4,
+                )
+                ax4.tick_params(axis="x", labelrotation=30)
             st.pyplot(fig4)
 
         with col_f3:
             st.markdown("**3. Waiting Time Perceptions**")
             fig5, ax5 = plt.subplots(figsize=(5, 4))
-            if 'waitingtimerecode' in df_raw.columns:
-                sns.countplot(data=df_raw, x='waitingtimerecode', hue='satisfaction', palette='coolwarm', ax=fig5.gca())
-                ax5.set_xticklabels(ax5.get_xticklabels(), rotation=30, ha='right')
+            if "waitingtimerecode" in all_categorical_cols:
+                waiting_summary = df_summary[
+                    df_summary["variable"] == "waitingtimerecode"
+                ]
+                sns.barplot(
+                    data=waiting_summary,
+                    x="category",
+                    y="count",
+                    hue="satisfaction",
+                    palette="coolwarm",
+                    ax=ax5,
+                )
+                ax5.tick_params(axis="x", labelrotation=30)
             st.pyplot(fig5)
     else:
-        st.info("Detailed visual graphics require the raw dataset connection, which is currently unavailable.")
+        st.info("Aggregated descriptive chart data is not available in this deployment.")
 
 # --- TAB 3: MODEL PERFORMANCE ---
 with tab_performance:

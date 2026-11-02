@@ -17,5 +17,6 @@ python -m streamlit run app.py
 
 The raw SPSS dataset and individual test labels/predictions are intentionally not
 included in this repository. Prediction uses the included model artifacts, and
-the confusion matrix is shown as aggregate counts. Raw-data previews and
-descriptive charts are unavailable without a separately provided dataset.
+the confusion matrix is shown as aggregate counts. Descriptive charts use
+pre-aggregated counts; categories with fewer than five observations in either
+satisfaction group are omitted to protect privacy.

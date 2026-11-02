@@ -1,0 +1,195 @@
+variable,category,satisfaction,count
+satisfaction,not satisfied,not satisfied,345
+satisfaction,satisfied,satisfied,549
+accessandcleanessoftoiletrecode,not satisfied,not satisfied,332
+accessandcleanessoftoiletrecode,not satisfied,satisfied,56
+accessandcleanessoftoiletrecode,satisfied,not satisfied,13
+accessandcleanessoftoiletrecode,satisfied,satisfied,493
+ageafterrecod,20-30 yr,not satisfied,263
+ageafterrecod,20-30 yr,satisfied,410
+ageafterrecod,31-49 yr,not satisfied,57
+ageafterrecod,31-49 yr,satisfied,103
+ageafterrecod,<=19 yr,not satisfied,25
+ageafterrecod,<=19 yr,satisfied,36
+availabilityofbedintheward,not satisfied,not satisfied,318
+availabilityofbedintheward,not satisfied,satisfied,31
+availabilityofbedintheward,satisfied,not satisfied,27
+availabilityofbedintheward,satisfied,satisfied,518
+availabilityofmedicalequipmentsrecode,not satisfied,not satisfied,179
+availabilityofmedicalequipmentsrecode,not satisfied,satisfied,19
+availabilityofmedicalequipmentsrecode,satisfied,not satisfied,166
+availabilityofmedicalequipmentsrecode,satisfied,satisfied,530
+birthweightofbaby,2500-4000 grams,not satisfied,286
+birthweightofbaby,2500-4000 grams,satisfied,452
+birthweightofbaby,<2500 grams,not satisfied,58
+birthweightofbaby,<2500 grams,satisfied,84
+counselingrecode,not satisfied,not satisfied,201
+counselingrecode,not satisfied,satisfied,17
+counselingrecode,satisfied,not satisfied,144
+counselingrecode,satisfied,satisfied,532
+distancerecode1,<=10 kilo meters,not satisfied,264
+distancerecode1,<=10 kilo meters,satisfied,388
+distancerecode1,>10 kilo meters,not satisfied,81
+distancerecode1,>10 kilo meters,satisfied,161
+encourageandsupportatdeliveryrecode,not satisfied,not satisfied,170
+encourageandsupportatdeliveryrecode,not satisfied,satisfied,5
+encourageandsupportatdeliveryrecode,satisfied,not satisfied,175
+encourageandsupportatdeliveryrecode,satisfied,satisfied,544
+gestationaagerecode,28-37 weeks,not satisfied,42
+gestationaagerecode,28-37 weeks,satisfied,64
+gestationaagerecode,38-42 weeks,not satisfied,296
+gestationaagerecode,38-42 weeks,satisfied,478
+gestationaagerecode,>42 weeks,not satisfied,7
+gestationaagerecode,>42 weeks,satisfied,7
+modeofdeliveryrecode,CS,not satisfied,191
+modeofdeliveryrecode,CS,satisfied,255
+modeofdeliveryrecode,vaginal delivery,not satisfied,154
+modeofdeliveryrecode,vaginal delivery,satisfied,294
+monthlyincomerecode,1527-3000 birr,not satisfied,111
+monthlyincomerecode,1527-3000 birr,satisfied,128
+monthlyincomerecode,3001-5305 birr,not satisfied,79
+monthlyincomerecode,3001-5305 birr,satisfied,130
+monthlyincomerecode,<1527 birr,not satisfied,78
+monthlyincomerecode,<1527 birr,satisfied,145
+monthlyincomerecode,>5305,not satisfied,77
+monthlyincomerecode,>5305,satisfied,146
+overallcleanessrecode,not satisfied,not satisfied,286
+overallcleanessrecode,not satisfied,satisfied,17
+overallcleanessrecode,satisfied,not satisfied,59
+overallcleanessrecode,satisfied,satisfied,532
+politenessrecode,satisfied,not satisfied,166
+politenessrecode,satisfied,satisfied,545
+privacyrecode,satisfied,not satisfied,162
+privacyrecode,satisfied,satisfied,545
+q102mstatu,cohabited,not satisfied,25
+q102mstatu,cohabited,satisfied,42
+q102mstatu,married,not satisfied,269
+q102mstatu,married,satisfied,443
+q102mstatu,single,not satisfied,40
+q102mstatu,single,satisfied,58
+q103religi,muslim,not satisfied,95
+q103religi,muslim,satisfied,98
+q103religi,orthodox,not satisfied,206
+q103religi,orthodox,satisfied,402
+q103religi,protestant,not satisfied,43
+q103religi,protestant,satisfied,45
+q104ethini,agew,not satisfied,27
+q104ethini,agew,satisfied,20
+q104ethini,amhara,not satisfied,259
+q104ethini,amhara,satisfied,456
+q104ethini,oromo,not satisfied,45
+q104ethini,oromo,satisfied,50
+q104ethini,tigrie,not satisfied,14
+q104ethini,tigrie,satisfied,23
+q105educat,able to read and write,not satisfied,12
+q105educat,able to read and write,satisfied,37
+q105educat,diploma and above,not satisfied,103
+q105educat,diploma and above,satisfied,218
+q105educat,grade 1 to 4,not satisfied,6
+q105educat,grade 1 to 4,satisfied,21
+q105educat,grade 11 to 12,not satisfied,77
+q105educat,grade 11 to 12,satisfied,77
+q105educat,grade 5 to 8,not satisfied,26
+q105educat,grade 5 to 8,satisfied,54
+q105educat,grade 9 to 10,not satisfied,71
+q105educat,grade 9 to 10,satisfied,75
+q105educat,unable to read and write,not satisfied,50
+q105educat,unable to read and write,satisfied,67
+q106occupa,farmer,not satisfied,48
+q106occupa,farmer,satisfied,26
+q106occupa,governmental,not satisfied,109
+q106occupa,governmental,satisfied,154
+q106occupa,huose wife,not satisfied,86
+q106occupa,huose wife,satisfied,202
+q106occupa,merchants,not satisfied,45
+q106occupa,merchants,satisfied,83
+q106occupa,others,not satisfied,33
+q106occupa,others,satisfied,69
+q106occupa,students,not satisfied,24
+q106occupa,students,satisfied,15
+q108reside,rural,not satisfied,126
+q108reside,rural,satisfied,78
+q108reside,urban,not satisfied,219
+q108reside,urban,satisfied,471
+q110reason,planed,not satisfied,105
+q110reason,planed,satisfied,391
+q110reason,refered,not satisfied,240
+q110reason,refered,satisfied,158
+q111timeta,<1hr,not satisfied,182
+q111timeta,<1hr,satisfied,524
+q111timeta,>1hr,not satisfied,163
+q111timeta,>1hr,satisfied,25
+q112waitpl,no,not satisfied,235
+q112waitpl,no,satisfied,64
+q112waitpl,yes,not satisfied,110
+q112waitpl,yes,satisfied,485
+q113privac,no,not satisfied,183
+q113privac,no,satisfied,16
+q113privac,yes,not satisfied,162
+q113privac,yes,satisfied,533
+q201parity,1 child,not satisfied,191
+q201parity,1 child,satisfied,272
+q201parity,2-5 childrens,not satisfied,148
+q201parity,2-5 childrens,satisfied,232
+q201parity,>5 childrens,not satisfied,6
+q201parity,>5 childrens,satisfied,45
+q202cpplan,no,not satisfied,45
+q202cpplan,no,satisfied,24
+q202cpplan,yes,not satisfied,300
+q202cpplan,yes,satisfied,525
+q203ancatt,no,not satisfied,46
+q203ancatt,no,satisfied,17
+q203ancatt,yes,not satisfied,299
+q203ancatt,yes,satisfied,532
+q204hivres,HIV negative,not satisfied,254
+q204hivres,HIV negative,satisfied,485
+q204hivres,HIV positive,not satisfied,18
+q204hivres,HIV positive,satisfied,26
+q204hivres,not tested,not satisfied,73
+q204hivres,not tested,satisfied,38
+q206delimo,CS,not satisfied,191
+q206delimo,CS,satisfied,255
+q206delimo,assisted delivery,not satisfied,61
+q206delimo,assisted delivery,satisfied,77
+q206delimo,spontaneous vaginal delivery,not satisfied,93
+q206delimo,spontaneous vaginal delivery,satisfied,217
+q207nstatu,alive,not satisfied,337
+q207nstatu,alive,satisfied,540
+q207nstatu,still birth,not satisfied,8
+q207nstatu,still birth,satisfied,9
+q208pdhsta,no,not satisfied,100
+q208pdhsta,no,satisfied,137
+q208pdhsta,yes,not satisfied,245
+q208pdhsta,yes,satisfied,412
+q209nsex,female,not satisfied,119
+q209nsex,female,satisfied,279
+q209nsex,male,not satisfied,226
+q209nsex,male,satisfied,270
+q301greeti,no,not satisfied,157
+q301greeti,no,satisfied,6
+q301greeti,yes,not satisfied,188
+q301greeti,yes,satisfied,543
+q302respec,no,not satisfied,159
+q302respec,no,satisfied,6
+q302respec,yes,not satisfied,186
+q302respec,yes,satisfied,543
+q303delive,female,not satisfied,89
+q303delive,female,satisfied,260
+q303delive,male,not satisfied,256
+q303delive,male,satisfied,289
+q411owners,government,not satisfied,338
+q411owners,government,satisfied,370
+q411owners,private,not satisfied,7
+q411owners,private,satisfied,179
+waitingareacleanessandconfort,not satisfied,not satisfied,307
+waitingareacleanessandconfort,not satisfied,satisfied,26
+waitingareacleanessandconfort,satisfied,not satisfied,38
+waitingareacleanessandconfort,satisfied,satisfied,523
+waitingtimerecode,not satisfied,not satisfied,189
+waitingtimerecode,not satisfied,satisfied,13
+waitingtimerecode,satisfied,not satisfied,156
+waitingtimerecode,satisfied,satisfied,536
+wolkingdistancerecodeinhrs,(missing),not satisfied,219
+wolkingdistancerecodeinhrs,(missing),satisfied,400
+wolkingdistancerecodeinhrs,>2 hrs,not satisfied,126
+wolkingdistancerecodeinhrs,>2 hrs,satisfied,149
