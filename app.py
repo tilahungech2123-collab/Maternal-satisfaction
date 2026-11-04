@@ -258,22 +258,41 @@ with tab_performance:
         st.metric(label="Brier Score", value="0.0404")
 
     st.markdown("---")
-    col_perf1, col_perf2 = st.columns(2)
+    st.subheader("Confusion Matrix")
+    cm = np.array([[66, 3], [5, 105]])
+    fig_cm, ax_cm = plt.subplots(figsize=(7, 5))
+    sns.heatmap(
+        cm,
+        annot=True,
+        fmt="d",
+        cmap="Blues",
+        xticklabels=["Not Satisfied", "Satisfied"],
+        yticklabels=["Not Satisfied", "Satisfied"],
+        ax=ax_cm,
+    )
+    ax_cm.set_xlabel("Predicted")
+    ax_cm.set_ylabel("Actual")
+    fig_cm.tight_layout()
+    st.pyplot(fig_cm, width="stretch")
+    plt.close(fig_cm)
 
-    with col_perf1:
-        st.subheader("Confusion Matrix")
-        cm = np.array([[66, 3], [5, 105]])
-        fig_cm, ax_cm = plt.subplots(figsize=(5, 4))
-        sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
-                    xticklabels=['Not Satisfied', 'Satisfied'],
-                    yticklabels=['Not Satisfied', 'Satisfied'], ax=ax_cm)
-        st.pyplot(fig_cm)
-
-    with col_perf2:
-        st.subheader("Feature Importances (Coefficients)")
-        fig_coef, ax_coef = plt.subplots(figsize=(6, 4.5))
-        sns.barplot(x=loaded_coef_importance.head(10).values, y=loaded_coef_importance.head(10).index, palette='coolwarm', ax=ax_coef)
-        st.pyplot(fig_coef)
+    st.subheader("Feature Importances (Coefficients)")
+    top_coefficients = loaded_coef_importance.head(10)
+    fig_coef, ax_coef = plt.subplots(figsize=(10, 6))
+    sns.barplot(
+        x=top_coefficients.values,
+        y=top_coefficients.index,
+        hue=top_coefficients.index,
+        palette="coolwarm",
+        dodge=False,
+        legend=False,
+        ax=ax_coef,
+    )
+    ax_coef.set_xlabel("Coefficient")
+    ax_coef.set_ylabel("")
+    fig_coef.tight_layout()
+    st.pyplot(fig_coef, width="stretch")
+    plt.close(fig_coef)
 
 # --- TAB 4: PREDICT ---
 with tab_predict:
